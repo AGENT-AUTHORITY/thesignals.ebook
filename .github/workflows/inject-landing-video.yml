@@ -176,7 +176,7 @@ jobs:
                   <span>Repetición</span>
                   <span>Patrón</span>
                 </div>
-                <a class="btn js-buy" href="#">QUIERO THE SIGNALS <small>US$ 16,99</small></a>
+                <a class="btn js-buy" href="#">QUIERO THE SIGNALS <small>US$ 22,22</small></a>
                 <span class="video-subline">Acceso digital inmediato · Compra segura por Hotmart</span>
               </div>
 
@@ -212,7 +212,7 @@ jobs:
               changed = True
 
           old = html
-          html = html.replace('US$ 22,22', 'US$ 16,99')
+          html = html.replace('US$ 16,99', 'US$ 22,22')
           if html != old:
               changed = True
 
@@ -233,5 +233,5 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "Add landing video section and update price"
+          git commit -m "Restore organic price to US$22.22"
           git push

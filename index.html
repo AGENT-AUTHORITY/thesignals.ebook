@@ -298,17 +298,12 @@
         radial-gradient(circle at 78% 35%, rgba(229, 35, 45, .16), transparent 24rem),
         var(--ink);
     }
-    .close-grid { display: grid; gap: 34px; align-items: center; }
-    .close-visual {
-      position: relative;
-      width: min(100%, 390px);
-      margin: auto;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, .18);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
+    .close-grid {
+      display: grid;
+      max-width: 760px;
+      gap: 34px;
+      align-items: center;
     }
-    .close-visual img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 24%; }
     .close-copy .eyebrow { margin-top: 0; }
     .close-copy h2 { max-width: 690px; }
     .close-copy > p { color: #d1cbc5; font-size: 1.05rem; }
@@ -353,7 +348,6 @@
     @media (min-width: 900px) {
       .hero { padding-top: 30px; }
       .eyebrow { margin-top: 44px; }
-      .close-grid { grid-template-columns: minmax(290px, 390px) 1fr; gap: 72px; }
       footer { padding-bottom: 30px; }
       .sticky-cta { display: none; }
     }
@@ -377,15 +371,17 @@
         <p class="hero-copy">Deja de leer mensajes aislados. Aprende a reconocer lo que sus acciones repiten.</p>
 
         <div class="video-shell">
-          <span class="video-badge">60 segundos</span>
+          <span class="video-badge">1 minuto</span>
           <video
             id="vsl"
             controls
             playsinline
-            preload="none"
+            preload="metadata"
+            width="720"
+            height="1280"
             poster="assets/the-signals-video-poster.webp"
             aria-label="Video de presentación de The Signals">
-            <source src="assets/the-signals-landing-1080.mp4" type="video/mp4">
+            <source src="assets/Cine-Landing-web-ligero.mp4" type="video/mp4">
             Tu navegador no puede reproducir este video.
           </video>
         </div>
@@ -466,10 +462,6 @@
 
     <section class="close" id="obtener">
       <div class="container close-grid">
-        <div class="close-visual">
-          <img src="assets/the-signals-video-poster.webp" width="1080" height="1350" loading="lazy" decoding="async" alt="Valentina Reyes presentando The Signals">
-        </div>
-
         <div class="close-copy">
           <p class="eyebrow">20 señales · Método WATCH</p>
           <h2>Deja de leer promesas. Empieza a reconocer patrones.</h2>

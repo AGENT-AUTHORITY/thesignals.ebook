@@ -1,1 +1,1711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <title>Test WATCH | The Signals</title>
+
+  <meta
+    name="description"
+    content="Descubrí qué patrón estás viviendo en menos de 60 segundos con el método WATCH de The Signals."
+  />
+
+  <meta name="theme-color" content="#0b090a" />
+
+  <meta property="og:title" content="¿Qué patrón estás viviendo? | The Signals" />
+  <meta
+    property="og:description"
+    content="Un test de 4 preguntas para dejar de interpretar señales aisladas y empezar a mirar patrones."
+  />
+
+  <style>
+    /* =========================================================
+       COLORES DE MARCA
+       Cambiando estas variables cambiás prácticamente todo.
+    ========================================================== */
+
+    :root {
+      --bg: #0b090a;
+      --panel: #151113;
+      --panel-soft: #1c1619;
+
+      --red: #c9363e;
+      --red-dark: #92242a;
+
+      --cream: #f5ede5;
+      --text: #f8f3ef;
+      --muted: #b9abad;
+
+      --gold: #d4ad70;
+
+      --border: rgba(255, 255, 255, 0.09);
+
+      --radius: 22px;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(201, 54, 62, 0.22),
+          transparent 36%
+        ),
+        linear-gradient(
+          180deg,
+          #120d0f 0%,
+          var(--bg) 45%,
+          #080708 100%
+        );
+
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =========================================================
+       ESTRUCTURA
+    ========================================================== */
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+
+      padding:
+        max(18px, env(safe-area-inset-top))
+        16px
+        max(30px, env(safe-area-inset-bottom));
+    }
+
+    .app {
+      width: 100%;
+      max-width: 680px;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================== */
+
+    .brand {
+      text-align: center;
+      padding: 14px 0 24px;
+    }
+
+    .brand-name {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      margin-top: 5px;
+
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       CARD PRINCIPAL
+    ========================================================== */
+
+    .card {
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.035),
+          rgba(255, 255, 255, 0.012)
+        ),
+        var(--panel);
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+
+      box-shadow: var(--shadow);
+
+      padding: 28px 20px;
+    }
+
+    .card::before {
+      content: "";
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 3px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--red),
+          var(--gold),
+          var(--red),
+          transparent
+        );
+    }
+
+    @media (min-width: 640px) {
+      .card {
+        padding: 42px 42px;
+      }
+    }
+
+    /* =========================================================
+       UTILIDADES
+    ========================================================== */
+
+    .hidden {
+      display: none !important;
+    }
+
+    .eyebrow {
+      display: inline-block;
+
+      margin-bottom: 15px;
+
+      padding: 7px 11px;
+
+      border: 1px solid rgba(212, 173, 112, 0.24);
+      border-radius: 999px;
+
+      background: rgba(212, 173, 112, 0.06);
+
+      color: var(--gold);
+
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2 {
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    h1 {
+      font-size: clamp(34px, 8vw, 55px);
+      max-width: 600px;
+    }
+
+    h2 {
+      font-size: clamp(27px, 7vw, 40px);
+    }
+
+    p {
+      line-height: 1.65;
+    }
+
+    .accent {
+      color: var(--red);
+    }
+
+    /* =========================================================
+       INTRO
+    ========================================================== */
+
+    .intro-copy {
+      margin-top: 19px;
+
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .intro-copy strong {
+      color: var(--cream);
+    }
+
+    .quote {
+      margin-top: 24px;
+      padding: 18px 18px;
+
+      border-left: 3px solid var(--red);
+
+      background: rgba(201, 54, 62, 0.07);
+
+      border-radius: 0 12px 12px 0;
+
+      color: var(--cream);
+
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .micro-benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 8px;
+
+      margin-top: 22px;
+    }
+
+    .micro-benefit {
+      padding: 12px 6px;
+
+      text-align: center;
+
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .micro-benefit strong {
+      display: block;
+
+      margin-bottom: 3px;
+
+      color: var(--cream);
+      font-size: 15px;
+    }
+
+    /* =========================================================
+       BOTONES
+    ========================================================== */
+
+    .primary-btn {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      margin-top: 26px;
+
+      border: none;
+      border-radius: 13px;
+
+      padding: 17px 18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--red),
+          var(--red-dark)
+        );
+
+      color: #fff;
+
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.01em;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 14px 32px rgba(201, 54, 62, 0.24);
+
+      transition:
+        transform 0.16s ease,
+        box-shadow 0.16s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 18px 38px rgba(201, 54, 62, 0.31);
+    }
+
+    .primary-btn:active {
+      transform: translateY(0);
+    }
+
+    .secondary-btn {
+      width: 100%;
+
+      border: none;
+      background: transparent;
+
+      color: var(--muted);
+
+      margin-top: 15px;
+      padding: 12px;
+
+      cursor: pointer;
+
+      font-size: 13px;
+    }
+
+    .secondary-btn:hover {
+      color: var(--cream);
+    }
+
+    /* =========================================================
+       PROGRESO
+    ========================================================== */
+
+    .progress-section {
+      margin-bottom: 27px;
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+
+      margin-bottom: 10px;
+
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 5px;
+
+      background: rgba(255, 255, 255, 0.07);
+
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 25%;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--red-dark),
+          var(--red),
+          var(--gold)
+        );
+
+      border-radius: inherit;
+
+      transition: width 0.35s ease;
+    }
+
+    /* =========================================================
+       PREGUNTAS
+    ========================================================== */
+
+    .question-label {
+      margin-bottom: 11px;
+
+      color: var(--red);
+
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .question-text {
+      margin-bottom: 24px;
+    }
+
+    .answers {
+      display: grid;
+      gap: 11px;
+    }
+
+    .answer-btn {
+      width: 100%;
+
+      display: flex;
+      align-items: flex-start;
+
+      text-align: left;
+
+      padding: 17px 16px;
+
+      border: 1px solid var(--border);
+      border-radius: 13px;
+
+      color: var(--cream);
+      background: rgba(255, 255, 255, 0.023);
+
+      cursor: pointer;
+
+      transition:
+        border-color 0.16s ease,
+        background 0.16s ease,
+        transform 0.16s ease;
+    }
+
+    .answer-btn:hover {
+      border-color: rgba(201, 54, 62, 0.62);
+
+      background: rgba(201, 54, 62, 0.07);
+
+      transform: translateY(-1px);
+    }
+
+    .answer-letter {
+      flex: 0 0 auto;
+
+      width: 29px;
+      height: 29px;
+
+      display: grid;
+      place-items: center;
+
+      margin-right: 12px;
+
+      border-radius: 50%;
+
+      background: rgba(201, 54, 62, 0.12);
+
+      color: var(--red);
+
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .answer-copy {
+      font-size: 14px;
+      line-height: 1.53;
+    }
+
+    /* =========================================================
+       RESULTADOS
+    ========================================================== */
+
+    .result-icon {
+      width: 62px;
+      height: 62px;
+
+      display: grid;
+      place-items: center;
+
+      margin-bottom: 18px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(212, 173, 112, 0.28);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(212, 173, 112, 0.17),
+          rgba(212, 173, 112, 0.04)
+        );
+
+      color: var(--gold);
+
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    .result-kicker {
+      margin-bottom: 7px;
+
+      color: var(--gold);
+
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .result-description {
+      margin-top: 18px;
+
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .result-description strong {
+      color: var(--cream);
+    }
+
+    .result-focus {
+      margin-top: 24px;
+
+      padding: 17px;
+
+      border-radius: 13px;
+
+      background: rgba(201, 54, 62, 0.07);
+      border: 1px solid rgba(201, 54, 62, 0.15);
+    }
+
+    .result-focus-title {
+      margin-bottom: 7px;
+
+      color: var(--red);
+
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .result-focus p {
+      color: var(--cream);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    /* =========================================================
+       WATCH
+    ========================================================== */
+
+    .watch-section {
+      margin-top: 34px;
+      padding-top: 30px;
+
+      border-top: 1px solid var(--border);
+    }
+
+    .watch-header {
+      margin-bottom: 19px;
+    }
+
+    .watch-header span {
+      display: block;
+
+      margin-bottom: 5px;
+
+      color: var(--gold);
+
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .watch-header h3 {
+      font-size: 25px;
+      line-height: 1.15;
+    }
+
+    .watch-grid {
+      display: grid;
+      gap: 9px;
+    }
+
+    .watch-item {
+      display: grid;
+      grid-template-columns: 39px 1fr;
+
+      gap: 13px;
+      align-items: center;
+
+      padding: 13px;
+
+      background: rgba(255, 255, 255, 0.022);
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+    }
+
+    .watch-letter {
+      width: 39px;
+      height: 39px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(201, 54, 62, 0.22),
+          rgba(201, 54, 62, 0.07)
+        );
+
+      color: var(--red);
+
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .watch-word {
+      color: var(--cream);
+
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .watch-question {
+      margin-top: 3px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .final-message {
+      margin-top: 27px;
+
+      text-align: center;
+    }
+
+    .final-message strong {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: var(--cream);
+
+      font-size: 21px;
+    }
+
+    .final-message p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .disclaimer {
+      margin-top: 24px;
+
+      color: #83777a;
+
+      font-size: 10px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    /* =========================================================
+       ANIMACIONES
+    ========================================================== */
+
+    .animate-in {
+      animation: enter 0.32s ease both;
+    }
+
+    @keyframes enter {
+      from {
+        opacity: 0;
+        transform: translateY(11px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================== */
+
+    footer {
+      padding: 25px 10px 5px;
+
+      text-align: center;
+
+      color: #675d60;
+
+      font-size: 10px;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <div class="app">
+
+      <header class="brand">
+        <div class="brand-name">The Signals</div>
+        <div class="brand-sub">No leas mentes. Leé patrones.</div>
+      </header>
+
+      <!-- =====================================================
+           INTRO
+      ====================================================== -->
+
+      <section id="introScreen" class="card animate-in">
+
+        <span class="eyebrow">
+          Test WATCH · 60 segundos
+        </span>
+
+        <h1>
+          ¿Qué patrón estás
+          <span class="accent">viviendo?</span>
+        </h1>
+
+        <p class="intro-copy">
+
+          A veces el problema no es que falten señales.
+
+          <br><br>
+
+          El problema es que estás mirando
+          <strong>cada mensaje por separado</strong>
+          en vez de observar el patrón completo.
+
+        </p>
+
+        <div class="quote">
+          Respondé según lo que viene pasando de verdad,
+          no según lo que esperás que pase.
+        </div>
+
+        <div class="micro-benefits">
+
+          <div class="micro-benefit">
+            <strong>4</strong>
+            preguntas
+          </div>
+
+          <div class="micro-benefit">
+            <strong>&lt; 1 min</strong>
+            duración
+          </div>
+
+          <div class="micro-benefit">
+            <strong>WATCH</strong>
+            método
+          </div>
+
+        </div>
+
+        <button
+          class="primary-btn"
+          onclick="startTest()"
+        >
+          EMPEZAR EL TEST →
+        </button>
+
+      </section>
+
+
+      <!-- =====================================================
+           PREGUNTAS
+      ====================================================== -->
+
+      <section id="quizScreen" class="card hidden">
+
+        <div class="progress-section">
+
+          <div class="progress-top">
+            <span id="progressText">
+              Pregunta 1 de 4
+            </span>
+
+            <span id="progressPercent">
+              25%
+            </span>
+          </div>
+
+          <div class="progress-track">
+            <div
+              id="progressBar"
+              class="progress-bar"
+            ></div>
+          </div>
+
+        </div>
+
+
+        <div id="questionContainer"></div>
+
+
+        <button
+          id="backButton"
+          class="secondary-btn hidden"
+          onclick="previousQuestion()"
+        >
+          ← Volver
+        </button>
+
+      </section>
+
+
+      <!-- =====================================================
+           RESULTADO
+      ====================================================== -->
+
+      <section id="resultScreen" class="card hidden">
+
+        <div class="result-icon">
+          W
+        </div>
+
+        <div class="result-kicker">
+          Tu resultado
+        </div>
+
+        <h2 id="resultTitle"></h2>
+
+        <div
+          id="resultDescription"
+          class="result-description"
+        ></div>
+
+        <div class="result-focus">
+
+          <div class="result-focus-title">
+            Prestá atención especialmente a
+          </div>
+
+          <p id="resultFocus"></p>
+
+        </div>
+
+
+        <!-- WATCH -->
+
+        <div class="watch-section">
+
+          <div class="watch-header">
+            <span>Ahora mirá el patrón completo</span>
+            <h3>Usá WATCH</h3>
+          </div>
+
+
+          <div class="watch-grid">
+
+            <div class="watch-item">
+
+              <div class="watch-letter">
+                W
+              </div>
+
+              <div>
+                <div class="watch-word">
+                  WORDS
+                </div>
+
+                <div class="watch-question">
+                  ¿Qué dice realmente?
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="watch-item">
+
+              <div class="watch-letter">
+                A
+              </div>
+
+              <div>
+                <div class="watch-word">
+                  ACTIONS
+                </div>
+
+                <div class="watch-question">
+                  ¿Qué hace después de decirlo?
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="watch-item">
+
+              <div class="watch-letter">
+                T
+              </div>
+
+              <div>
+                <div class="watch-word">
+                  TIME
+                </div>
+
+                <div class="watch-question">
+                  ¿Hace cuánto se mantiene este comportamiento?
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="watch-item">
+
+              <div class="watch-letter">
+                C
+              </div>
+
+              <div>
+                <div class="watch-word">
+                  CONSISTENCY
+                </div>
+
+                <div class="watch-question">
+                  ¿Es constante o aparece y desaparece?
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="watch-item">
+
+              <div class="watch-letter">
+                H
+              </div>
+
+              <div>
+                <div class="watch-word">
+                  HORIZON
+                </div>
+
+                <div class="watch-question">
+                  ¿Existe algún avance real hacia el futuro?
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="final-message">
+
+            <strong>
+              No leas mentes.<br>
+              Leé patrones.
+            </strong>
+
+            <p>
+              WATCH es una parte del método de The Signals
+              para analizar interés, distancia y compromiso
+              a partir de conductas observables.
+            </p>
+
+          </div>
+
+
+          <a
+            id="bookButton"
+            class="primary-btn"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            style="text-decoration:none;"
+          >
+            QUIERO CONOCER EL MÉTODO COMPLETO →
+          </a>
+
+
+          <button
+            class="secondary-btn"
+            onclick="restartTest()"
+          >
+            Hacer el test nuevamente
+          </button>
+
+
+          <div class="disclaimer">
+            Este test es una herramienta educativa y no realiza
+            diagnósticos psicológicos ni determina lo que otra persona
+            piensa o siente. Está diseñado para ayudarte a observar
+            comportamientos y patrones de forma más estructurada.
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <footer>
+        THE SIGNALS · MÉTODO WATCH
+      </footer>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    /* =========================================================
+       CONFIGURACIÓN
+
+       CAMBIÁ ESTA URL POR EL CHECKOUT O LANDING DEL LIBRO.
+    ========================================================== */
+
+    const HOTMART_URL = "https://thesignals.store/";
+
+
+    /* =========================================================
+       PREGUNTAS
+    ========================================================== */
+
+    const questions = [
+
+      {
+        question:
+          "Cuando te dice que quiere verte o hacer algo juntos, ¿qué suele pasar?",
+
+        answers: [
+
+          {
+            type: "A",
+            text:
+              "Lo propone y normalmente lo concreta."
+          },
+
+          {
+            type: "B",
+            text:
+              "Lo dice seguido, pero muchas veces queda en palabras."
+          },
+
+          {
+            type: "C",
+            text:
+              "Lo concreta cuando siente que me estoy alejando, después vuelve a enfriarse."
+          },
+
+          {
+            type: "D",
+            text:
+              "Casi siempre aparece a último momento o cuando le resulta conveniente."
+          }
+
+        ]
+      },
+
+
+      {
+        question:
+          "Si mirás las últimas semanas, ¿cómo fue el contacto?",
+
+        answers: [
+
+          {
+            type: "A",
+            text:
+              "Bastante estable. Puede haber días distintos, pero no tengo que adivinar constantemente qué pasa."
+          },
+
+          {
+            type: "B",
+            text:
+              "Hay interés, pero siento que casi siempre soy yo quien sostiene el vínculo."
+          },
+
+          {
+            type: "C",
+            text:
+              "Hay momentos de muchísima atención seguidos por silencios o distancia."
+          },
+
+          {
+            type: "D",
+            text:
+              "Aparece cuando quiere algo, está aburrido/a o necesita atención y después desaparece."
+          }
+
+        ]
+      },
+
+
+      {
+        question:
+          "¿Qué ocurre cuando buscás claridad sobre la relación?",
+
+        answers: [
+
+          {
+            type: "A",
+            text:
+              "Podemos hablarlo aunque no siempre estemos de acuerdo."
+          },
+
+          {
+            type: "B",
+            text:
+              "Responde con frases vagas: “vamos viendo”, “no pensemos tanto”, “más adelante”."
+          },
+
+          {
+            type: "C",
+            text:
+              "Cuando planteo algo serio se distancia, pero cuando siente que me pierde vuelve a acercarse."
+          },
+
+          {
+            type: "D",
+            text:
+              "Evita completamente la conversación o cambia el tema."
+          }
+
+        ]
+      },
+
+
+      {
+        question:
+          "Pensando en el futuro, ¿qué lugar ocupás realmente en sus planes?",
+
+        answers: [
+
+          {
+            type: "A",
+            text:
+              "Hay planes concretos donde estoy incluido/a."
+          },
+
+          {
+            type: "B",
+            text:
+              "Habla de futuro, pero casi nunca hay fechas, decisiones o pasos concretos."
+          },
+
+          {
+            type: "C",
+            text:
+              "El futuro aparece principalmente después de una discusión, una distancia o cuando estoy por alejarme."
+          },
+
+          {
+            type: "D",
+            text:
+              "La relación parece existir solamente en el presente. No hay integración real con su vida."
+          }
+
+        ]
+      }
+
+    ];
+
+
+    /* =========================================================
+       RESULTADOS
+    ========================================================== */
+
+    const results = {
+
+      A: {
+
+        title:
+          "COHERENCIA",
+
+        description:
+          `
+          <p>
+            Lo que dice y lo que hace parecen estar
+            <strong>bastante alineados.</strong>
+          </p>
+
+          <p style="margin-top:14px;">
+            Esto no significa que la relación sea perfecta.
+            Significa que existe algo importante:
+            <strong>consistencia observable.</strong>
+          </p>
+
+          <p style="margin-top:14px;">
+            No necesitás interpretar cada mensaje cuando
+            el comportamiento general es claro.
+          </p>
+          `,
+
+        focus:
+          "A — Actions · C — Consistency · H — Horizon"
+
+      },
+
+
+      B: {
+
+        title:
+          "INTERÉS SIN AVANCE",
+
+        description:
+          `
+          <p>
+            Hay señales de interés, pero el vínculo
+            <strong>no parece avanzar al mismo ritmo.</strong>
+          </p>
+
+          <p style="margin-top:14px;">
+            Palabras, conversaciones y buenos momentos pueden existir.
+            La pregunta importante es:
+          </p>
+
+          <p style="margin-top:14px;">
+            <strong>
+              ¿Eso se está convirtiendo en decisiones,
+              acciones y avance observable?
+            </strong>
+          </p>
+          `,
+
+        focus:
+          "A — Actions · H — Horizon"
+
+      },
+
+
+      C: {
+
+        title:
+          "ATENCIÓN INTERMITENTE",
+
+        description:
+          `
+          <p>
+            El patrón parece alternar
+            <strong>cercanía y distancia.</strong>
+          </p>
+
+          <p style="margin-top:14px;">
+            Cuando aparece mucha atención parece que todo vuelve a funcionar.
+            Cuando aparece la distancia, empezás nuevamente a analizar
+            mensajes, tiempos, emojis o silencios.
+          </p>
+
+          <p style="margin-top:14px;">
+            El dato importante no es cada episodio aislado.
+            <strong>Es la repetición del ciclo.</strong>
+          </p>
+          `,
+
+        focus:
+          "T — Time · C — Consistency"
+
+      },
+
+
+      D: {
+
+        title:
+          "PRESENCIA POR CONVENIENCIA",
+
+        description:
+          `
+          <p>
+            El vínculo parece activarse principalmente cuando
+            la otra persona quiere algo, necesita compañía
+            o le resulta conveniente.
+          </p>
+
+          <p style="margin-top:14px;">
+            Eso no permite saber qué piensa o qué siente.
+          </p>
+
+          <p style="margin-top:14px;">
+            Pero sí permite observar
+            <strong>cómo participa realmente en la relación.</strong>
+          </p>
+          `,
+
+        focus:
+          "A — Actions · C — Consistency · H — Horizon"
+
+      }
+
+    ];
+
+
+    /* =========================================================
+       ESTADO
+    ========================================================== */
+
+    let currentQuestion = 0;
+
+    let userAnswers = [];
+
+
+    /* =========================================================
+       ELEMENTOS
+    ========================================================== */
+
+    const introScreen =
+      document.getElementById("introScreen");
+
+    const quizScreen =
+      document.getElementById("quizScreen");
+
+    const resultScreen =
+      document.getElementById("resultScreen");
+
+    const questionContainer =
+      document.getElementById("questionContainer");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const progressText =
+      document.getElementById("progressText");
+
+    const progressPercent =
+      document.getElementById("progressPercent");
+
+    const backButton =
+      document.getElementById("backButton");
+
+
+    /* =========================================================
+       INICIAR
+    ========================================================== */
+
+    function startTest() {
+
+      introScreen.classList.add("hidden");
+
+      quizScreen.classList.remove("hidden");
+
+      quizScreen.classList.add("animate-in");
+
+      renderQuestion();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /* =========================================================
+       MOSTRAR PREGUNTA
+    ========================================================== */
+
+    function renderQuestion() {
+
+      const item =
+        questions[currentQuestion];
+
+      const number =
+        currentQuestion + 1;
+
+      const percent =
+        Math.round(
+          (number / questions.length) * 100
+        );
+
+
+      progressText.textContent =
+        `Pregunta ${number} de ${questions.length}`;
+
+      progressPercent.textContent =
+        `${percent}%`;
+
+      progressBar.style.width =
+        `${percent}%`;
+
+
+      let answersHTML = "";
+
+
+      item.answers.forEach(answer => {
+
+        answersHTML += `
+
+          <button
+            class="answer-btn"
+            onclick="selectAnswer('${answer.type}')"
+          >
+
+            <span class="answer-letter">
+              ${answer.type}
+            </span>
+
+            <span class="answer-copy">
+              ${answer.text}
+            </span>
+
+          </button>
+
+        `;
+
+      });
+
+
+      questionContainer.innerHTML = `
+
+        <div class="animate-in">
+
+          <div class="question-label">
+            Pregunta ${number}
+          </div>
+
+          <h2 class="question-text">
+            ${item.question}
+          </h2>
+
+          <div class="answers">
+            ${answersHTML}
+          </div>
+
+        </div>
+
+      `;
+
+
+      if (currentQuestion === 0) {
+
+        backButton.classList.add("hidden");
+
+      } else {
+
+        backButton.classList.remove("hidden");
+
+      }
+
+    }
+
+
+    /* =========================================================
+       RESPUESTA
+    ========================================================== */
+
+    function selectAnswer(type) {
+
+      userAnswers[currentQuestion] =
+        type;
+
+
+      if (
+        currentQuestion <
+        questions.length - 1
+      ) {
+
+        currentQuestion++;
+
+        renderQuestion();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      } else {
+
+        showResult();
+
+      }
+
+    }
+
+
+    /* =========================================================
+       ATRÁS
+    ========================================================== */
+
+    function previousQuestion() {
+
+      if (currentQuestion > 0) {
+
+        currentQuestion--;
+
+        renderQuestion();
+
+      }
+
+    }
+
+
+    /* =========================================================
+       CALCULAR RESULTADO
+    ========================================================== */
+
+    function calculateResult() {
+
+      const scores = {
+        A: 0,
+        B: 0,
+        C: 0,
+        D: 0
+      };
+
+
+      userAnswers.forEach(answer => {
+
+        if (scores[answer] !== undefined) {
+
+          scores[answer]++;
+
+        }
+
+      });
+
+
+      const highestScore =
+        Math.max(
+          ...Object.values(scores)
+        );
+
+
+      const winners =
+        Object.keys(scores).filter(
+          type =>
+            scores[type] === highestScore
+        );
+
+
+      /*
+        Si hay un solo ganador,
+        usamos ese resultado.
+      */
+
+      if (winners.length === 1) {
+
+        return winners[0];
+
+      }
+
+
+      /*
+        SI HAY EMPATE:
+
+        usamos la pregunta 4 como desempate,
+        porque representa HORIZON:
+        hacia dónde va realmente el vínculo.
+      */
+
+      const horizonAnswer =
+        userAnswers[3];
+
+
+      if (
+        winners.includes(horizonAnswer)
+      ) {
+
+        return horizonAnswer;
+
+      }
+
+
+      /*
+        Fallback extremadamente raro.
+      */
+
+      return winners[0];
+
+    }
+
+
+    /* =========================================================
+       MOSTRAR RESULTADO
+    ========================================================== */
+
+    function showResult() {
+
+      const type =
+        calculateResult();
+
+      const result =
+        results[type];
+
+
+      quizScreen.classList.add("hidden");
+
+      resultScreen.classList.remove("hidden");
+
+      resultScreen.classList.add("animate-in");
+
+
+      document.getElementById(
+        "resultTitle"
+      ).textContent =
+        result.title;
+
+
+      document.getElementById(
+        "resultDescription"
+      ).innerHTML =
+        result.description;
+
+
+      document.getElementById(
+        "resultFocus"
+      ).textContent =
+        result.focus;
+
+
+      document.getElementById(
+        "bookButton"
+      ).href =
+        HOTMART_URL;
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /* =========================================================
+       REINICIAR
+    ========================================================== */
+
+    function restartTest() {
+
+      currentQuestion = 0;
+
+      userAnswers = [];
+
+
+      resultScreen.classList.add("hidden");
+
+      introScreen.classList.remove("hidden");
+
+      introScreen.classList.add("animate-in");
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>

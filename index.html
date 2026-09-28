@@ -386,12 +386,7 @@
           </video>
         </div>
 
-        <a
-          class="cta hero-cta js-checkout hotmart-fb hotmart__button-checkout"
-          href="https://pay.hotmart.com/T107571436O?checkoutMode=2"
-          onclick="return false;"
-          aria-label="Obtener The Signals en Hotmart"
-        >Obtener The Signals ahora — USD 19,99</a>
+        <a class="cta hero-cta js-checkout" href="https://pay.hotmart.com/T107571436O" aria-label="Obtener The Signals en Hotmart">Obtener The Signals ahora — USD 19,99</a>
         <p class="trust">Acceso digital inmediato · Compra segura por Hotmart</p>
       </div>
     </section>
@@ -480,9 +475,8 @@
           </ul>
 
           <a
-            class="cta js-checkout hotmart-fb hotmart__button-checkout"
-            href="https://pay.hotmart.com/T107571436O?checkoutMode=2"
-            onclick="return false;"
+            class="cta js-checkout"
+            href="https://pay.hotmart.com/T107571436O"
             aria-label="Obtener The Signals en Hotmart"
           >Obtener The Signals ahora — USD 19,99</a>
 
@@ -500,68 +494,12 @@
 
   <div class="sticky-cta" id="stickyCta" aria-hidden="true">
     <a
-      class="cta js-checkout hotmart-fb hotmart__button-checkout"
-      href="https://pay.hotmart.com/T107571436O?checkoutMode=2"
-      onclick="return false;"
+      class="cta js-checkout"
+      href="https://pay.hotmart.com/T107571436O"
       tabindex="-1"
       aria-label="Obtener The Signals en Hotmart"
     >Obtener The Signals ahora — USD 19,99</a>
   </div>
-
-  <!-- Hotmart Checkout Widget: cargar una sola vez -->
-  <script>
-    (function importHotmart() {
-      if (!document.querySelector('script[src="https://static.hotmart.com/checkout/widget.min.js"]')) {
-        const script = document.createElement('script');
-        script.src = 'https://static.hotmart.com/checkout/widget.min.js';
-        script.async = true;
-        document.head.appendChild(script);
-      }
-
-      if (!document.querySelector('link[href="https://static.hotmart.com/css/hotmart-fb.min.css"]')) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
-        document.head.appendChild(link);
-      }
-
-      /* Mantiene el diseño propio del CTA aunque Hotmart cargue su CSS después */
-      if (!document.getElementById('hotmart-cta-override')) {
-        const style = document.createElement('style');
-        style.id = 'hotmart-cta-override';
-        style.textContent = `
-          a.cta.hotmart-fb.hotmart__button-checkout {
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 10px !important;
-            min-height: 58px !important;
-            padding: 15px 24px !important;
-            border: 0 !important;
-            border-radius: 12px !important;
-            color: #fff !important;
-            background: linear-gradient(135deg, #f32631, #e5232d) !important;
-            box-shadow: 0 16px 40px rgba(229,35,45,.23) !important;
-            font-size: .94rem !important;
-            font-weight: 900 !important;
-            letter-spacing: .025em !important;
-            text-align: center !important;
-            text-decoration: none !important;
-            text-transform: uppercase !important;
-            cursor: pointer !important;
-          }
-
-          a.cta.hotmart-fb.hotmart__button-checkout:hover {
-            transform: translateY(-2px) !important;
-            filter: brightness(1.06) !important;
-            box-shadow: 0 20px 46px rgba(229,35,45,.32) !important;
-          }
-        `;
-        document.head.appendChild(style);
-      }
-    })();
-  </script>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
